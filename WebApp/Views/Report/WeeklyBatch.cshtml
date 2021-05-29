@@ -1,0 +1,81 @@
+﻿@model WebApp.Models.Batch
+@{
+    ViewBag.Title = "WeeklyBatch";
+}
+
+<script lang="javascript" type="text/javascript">
+    function showReport() {
+        if ($('#BatchId').val() == '') {
+            alert('Please select a Batch');
+        }
+        else {
+            var start = $('#start').val();
+            var end = $('#end').val();
+            window.location.href = "@Url.Action("WeeklyBatch")"+"?start=" + start +"&end="+end;
+        }
+    }
+</script>
+
+<h2>WeeklyBatch</h2>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <label class="col-md-2">Start Date</label>
+        <div class="col-md-10">
+            <input class="form-control" name="start" id="start" type="date" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2">End Date</label>
+        <div class="col-md-10">
+            <input class="form-control" name="end" id="end" type="date" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" value="Show" onclick="showReport();" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered" id="dataTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Batch Name")
+            </th>
+            @*<th>
+                @Html.DisplayName("Student Name")
+            </th>*@
+            <th>
+                @Html.DisplayName("Teacher Name")
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var batchStudents in Model.BatchStudents)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => batchStudents.Batch.Name)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => batchStudents.Student.Fullname)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => batchStudents.Batch.Teacher.Fullname)
+                    </td>
+                </tr>
+            }
+
+    </tbody>
+
+</table>
+    @section Scripts{
+        <script>
+            $(document).ready(function () {
+                $('#dataTable').DataTable();
+            });
+        </script>
+    }

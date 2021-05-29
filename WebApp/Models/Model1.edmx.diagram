@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="12604e91931a4363acc03d3d20e82c10" Name="Diagram1">
+        <EntityTypeShape EntityType="smsModel.Batch" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.BatchStudent" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.Student" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.Subject" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.Teacher" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="smsModel.FK_Batches_ToSubjects" ManuallyRouted="false" />
+        <AssociationConnector Association="smsModel.FK_Batches_ToTeachers" ManuallyRouted="false" />
+        <AssociationConnector Association="smsModel.FK_Table_ToBatches" ManuallyRouted="false" />
+        <AssociationConnector Association="smsModel.FK_Table_ToStudents" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="smsModel.User" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

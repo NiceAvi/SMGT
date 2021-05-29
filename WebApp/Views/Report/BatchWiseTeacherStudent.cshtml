@@ -1,0 +1,71 @@
+﻿@model WebApp.Models.Batch
+
+@{
+    ViewBag.Title = "BatchWiseTeacherStudent";
+}
+
+
+
+<script lang="javascript" type="text/javascript">
+    function showReport() {
+        if ($('#BatchId').val() == '') {
+            alert('Please select a Batch');
+        }
+        else {
+            var batchId = $('#BatchId').val();
+            window.location.href = "@Url.Action("BatchWiseTeacherStudent")"+"?batchId=" + batchId;
+        }
+    }
+</script>
+
+<h2>Batch Wise Teacher Student</h2>
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Id, "Select Batch", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("BatchId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" value="Show" onclick="showReport();" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered" id="dataTable">
+    <thead>
+        <tr>           
+            <th>
+                @Html.DisplayName("Student Name")
+            </th> 
+            <th>
+                @Html.DisplayName("Teacher Name")
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var batchStudents in Model.BatchStudents)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => batchStudents.Student.Fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => batchStudents.Batch.Teacher.Fullname)
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
+}   
